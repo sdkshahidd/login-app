@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e3f2fd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #msg {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <form onsubmit="checkLogin(event)">
+    <h2>🔑 Login</h2>
+    <label>Username:</label>
+    <input type="text" id="loginUser" required>
+
+    <label>Password:</label>
+    <input type="password" id="loginPass" required>
+
+    <button type="submit">Login</button>
+    <p id="msg"></p>
+  </form>
+
+<script>
+  function checkLogin(e) {
+    e.preventDefault();
+
+    let savedUser = localStorage.getItem("savedUser");
+    let savedPass = localStorage.getItem("savedPass");
+
+    let u = document.getElementById("loginUser").value.trim();
+    let p = document.getElementById("loginPass").value;
+    let msg = document.getElementById("msg");
+
+    if (u === savedUser && p === savedPass) {
+      msg.style.color = "green";
+      msg.textContent = "✅ Login successful! Redirecting...";
+
+      // ✅ Redirect to website after 1 second
+      setTimeout(function() {
+        window.location.href = "https://www.programiz.com/c-programming/online-compiler/"; // ← Yahan apna URL daal sakte ho
+      }, 1000);
+
+    } else {
+      msg.style.color = "red";
+      msg.textContent = "❌ Wrong username or password!";
+    }
+  }
+</script>
+
+</body>
+</html>
